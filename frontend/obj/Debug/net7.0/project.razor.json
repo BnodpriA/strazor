@@ -107,39 +107,6 @@
         }
       },
       {
-        "HashCode": -432237495,
-        "Kind": "Components.Component",
-        "Name": "frontend.Pages.Index",
-        "AssemblyName": "frontend",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "frontend.Pages.Index"
-        }
-      },
-      {
-        "HashCode": 764631751,
-        "Kind": "Components.Component",
-        "Name": "frontend.Pages.Index",
-        "AssemblyName": "frontend",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "frontend.Pages.Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "frontend.Pages.Index",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 337737025,
         "Kind": "Components.Component",
         "Name": "frontend.Shared.SurveyPrompt",
