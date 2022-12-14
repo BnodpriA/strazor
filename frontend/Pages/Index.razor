@@ -1,20 +1,20 @@
 ﻿@page "/"
-@using Microsoft.Extensions.Configuration
+@inject HttpClient Http
+@using Microsoft.Extensions.Configuration;
+@using Models
 @inject IConfiguration Configuration
 
-<PageTitle>Index</PageTitle>
-
-@if(allPosts == null)
+@if (allPosts == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-     <section class="text-gray-600 body-font">
+    <section class="text-gray-600 body-font">
     <div class="container px-5 py-4 mx-auto">
         <div class="text-center mb-20">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Strazor</h1>
-            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Blog using blazor and strapi</p>
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Strapi Blazor Blog App</h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">British History - From the Anglo-Saxon era to present day Britain.</p>
             <div class="flex mt-6 justify-center">
                 <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
             </div>
@@ -43,19 +43,22 @@ else
         </div>
     </section>
 }
+
+
 @code {
     private PostList allPosts = null;
-    public string string_api_url;
+    public string strapi_api_url;
+
     protected override async Task OnInitializedAsync()
     {
-        string_api_url = Configuration["AppSettings:STRAPI_API_URL"];
+        strapi_api_url = Configuration["AppSettings:STRAPI_API_URL"];
         var url = "{STRAPI_API_URL}/api/posts?populate=*";
         allPosts = await Http.GetFromJsonAsync<PostList>(url.Replace("{STRAPI_API_URL}", strapi_api_url));
-        if(allPosts.data != null)
+        if (allPosts.data != null)
         {
-           foreach(var post in allPosts.data)
+            foreach (var post in allPosts.data)
             {
-                post.Image.Url = string_api_url + post.Image.Url;
+                post.Image.Url = strapi_api_url + post.Image.Url;
             }
         }
     }
@@ -65,11 +68,11 @@ else
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public string Image { get; set; }
         public string Author { get; set; }
+        public Image Image { get; set; }
     }
 
-    public classs Image
+    public class Image
     {
         public string Url { get; set; }
     }
@@ -78,4 +81,5 @@ else
     {
         public List<Post> data { get; set; }
     }
+
 }
